@@ -1,6 +1,4 @@
-# electron-vite-react-ts-template
-
-A template for using electron quickly.
+# LAAS - LOST ARK Accessory Search
 
 ## Overview
 
