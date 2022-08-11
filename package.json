@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@tanstack/react-location": "^3.7.4",
+    "antd": "^4.22.3",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.4",
     "electron-log": "^4.4.8",
@@ -19,10 +20,13 @@
     "electron-updater": "^5.2.1",
     "formik": "^2.2.9",
     "generouted": "^1.5.0",
+    "immer": "^9.0.15",
     "playwright": "^1.24.2",
+    "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
+    "react-use": "^17.4.0",
     "recoil": "^0.7.4",
     "styled-components": "^5.3.5"
   },
