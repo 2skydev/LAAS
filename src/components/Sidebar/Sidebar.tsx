@@ -1,4 +1,4 @@
-import { Link } from '@tanstack/react-location';
+import { Link, useRouter } from '@tanstack/react-location';
 
 import clsx from 'clsx';
 import { motion, LayoutGroup } from 'framer-motion';
@@ -15,8 +15,8 @@ export const menus = [
     items: [
       {
         icon: 'bell',
-        link: '/',
-        text: '매물 알림 관리',
+        link: '/search/items',
+        text: '매물 검색 목록',
       },
     ],
   },
@@ -25,8 +25,8 @@ export const menus = [
     items: [
       {
         icon: 'receipt',
-        link: '/logs/notification',
-        text: '매물 알림 로그',
+        link: '/search/logs',
+        text: '매물 검색 로그',
       },
     ],
   },
@@ -48,6 +48,12 @@ export const menus = [
 ];
 
 const Sidebar = ({ className }: SidebarProps) => {
+  const {
+    state: {
+      location: { pathname },
+    },
+  } = useRouter();
+
   return (
     <SidebarStyled className={clsx('Sidebar', className)}>
       <div className="logo">LAAS</div>
@@ -60,7 +66,7 @@ const Sidebar = ({ className }: SidebarProps) => {
 
               <div className="items">
                 {menuGroup.items.map(item => {
-                  const isActive = location.pathname === item.link;
+                  const isActive = pathname === item.link;
 
                   return (
                     <Link

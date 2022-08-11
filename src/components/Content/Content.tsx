@@ -1,3 +1,5 @@
+import { useRouter } from '@tanstack/react-location';
+
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -9,6 +11,12 @@ export interface ContentProps {
 }
 
 const Content = ({ className, children }: ContentProps) => {
+  const {
+    state: {
+      location: { pathname },
+    },
+  } = useRouter();
+
   return (
     <ContentStyled className={clsx('Content', className)}>
       <div className="header">
@@ -18,7 +26,7 @@ const Content = ({ className, children }: ContentProps) => {
           initial={{ opacity: 0, x: 3 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3 }}
-          key={location.pathname}
+          key={pathname}
         >
           {'해당 페이지의 이름이 없는거 같네요 :('}
         </motion.span>
@@ -27,7 +35,7 @@ const Content = ({ className, children }: ContentProps) => {
       <div className="content">
         <AnimatePresence>
           <motion.div
-            key="animate"
+            key={pathname}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
