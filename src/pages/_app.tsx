@@ -4,14 +4,19 @@ import { useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 
 import Layout from '~/components/Layout';
+import Titlebar from '~/components/Titlebar';
 import { configStore } from '~/stores/config';
 import { InitGlobalStyled } from '~/styles/init';
 import { darkTheme, lightTheme, sizes } from '~/styles/themes';
 
-type Theme = typeof lightTheme;
+type Sizes = typeof sizes;
+type Colors = typeof lightTheme;
 
 declare module 'styled-components' {
-  export interface DefaultTheme extends Theme {}
+  export interface DefaultTheme {
+    sizes: Sizes;
+    colors: Colors;
+  }
 }
 
 const App = ({ children }: { children: ReactNode }) => {
@@ -26,9 +31,10 @@ const App = ({ children }: { children: ReactNode }) => {
     >
       <InitGlobalStyled />
 
-      <Layout>
-        <main>{children}</main>
-      </Layout>
+      <div id="app">
+        <Titlebar />
+        <Layout>{children}</Layout>
+      </div>
     </ThemeProvider>
   );
 };

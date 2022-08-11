@@ -21,17 +21,29 @@ const createWindow = () => {
     return;
   }
 
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+  global.win = new BrowserWindow({
+    width: 1800,
+    height: 1000,
+    backgroundColor: '#36393F',
+    darkTheme: true,
+    show: false,
+    autoHideMenuBar: true,
+    frame: false,
+    webPreferences: {
+      preload: join(__dirname, 'preload/index.js'),
+    },
   });
 
   if (app.isPackaged) {
-    win.loadFile(PROD_FILE_PATH);
+    global.win.loadFile(PROD_FILE_PATH);
   } else {
-    win.loadURL(DEV_URL);
-    win.webContents.openDevTools();
+    global.win.loadURL(DEV_URL);
+    global.win.webContents.openDevTools();
   }
+
+  global.win.on('ready-to-show', () => {
+    global.win.show();
+  });
 };
 
 app.on('activate', () => {

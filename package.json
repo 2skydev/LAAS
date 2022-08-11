@@ -19,6 +19,7 @@
     "electron-store": "^8.1.0",
     "electron-updater": "^5.2.1",
     "formik": "^2.2.9",
+    "framer-motion": "^7.0.1",
     "generouted": "^1.5.0",
     "immer": "^9.0.15",
     "playwright": "^1.24.2",

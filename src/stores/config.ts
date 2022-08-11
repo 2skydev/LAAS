@@ -7,6 +7,6 @@ export interface ConfigStoreValues {
 export const configStore = atom<ConfigStoreValues>({
   key: 'config',
   default: {
-    theme: 'light',
+    theme: 'dark',
   },
 });

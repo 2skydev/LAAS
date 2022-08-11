@@ -16,11 +16,16 @@ export default defineConfig({
     svgr(),
     electron({
       main: {
-        entry: 'electron/index.ts',
+        entry: 'app/index.ts',
       },
       preload: {
         input: {
-          index: join(__dirname, 'electron/preload/index.ts'),
+          index: join(__dirname, 'app/preload/index.ts'),
+        },
+        vite: {
+          build: {
+            outDir: 'dist/app/preload',
+          },
         },
       },
     }),
