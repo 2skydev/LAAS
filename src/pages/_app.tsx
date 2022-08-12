@@ -1,4 +1,5 @@
-import { ReactNode } from 'react';
+import { useNavigate } from '@tanstack/react-location';
+import { ReactNode, useEffect } from 'react';
 
 import { useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
@@ -21,6 +22,11 @@ declare module 'styled-components' {
 
 const App = ({ children }: { children: ReactNode }) => {
   const { theme } = useRecoilValue(configStore);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate({ to: '/search/items' });
+  }, []);
 
   return (
     <ThemeProvider

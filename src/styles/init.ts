@@ -44,6 +44,8 @@ export const InitGlobalStyled = memo(createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: "NanumSquareRound";
+    user-select: none;
+    -webkit-user-drag: none;
   }
 
   *::-webkit-scrollbar {
@@ -83,7 +85,6 @@ export const InitGlobalStyled = memo(createGlobalStyle`
 
   body {
     background-color: ${props => props.theme.colors.sidebarBG};
-    user-select: none;
 
     .ant-switch {
       height: 28px;
