@@ -17,6 +17,11 @@ export default defineConfig({
     electron({
       main: {
         entry: 'app/index.ts',
+        vite: {
+          build: {
+            outDir: 'dist/app',
+          },
+        },
       },
       preload: {
         input: {
