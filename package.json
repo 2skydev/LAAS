@@ -2,7 +2,7 @@
   "name": "laas",
   "version": "1.1.5",
   "description": "LAAS - LOST ARK Accessory Search",
-  "main": "dist/electron/index.js",
+  "main": "dist/app/index.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && electron-builder",
