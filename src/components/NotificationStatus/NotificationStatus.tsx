@@ -2,7 +2,7 @@ import { Badge, Button, Tooltip } from 'antd';
 import clsx from 'clsx';
 import { useRecoilValue } from 'recoil';
 
-import { notificationStore } from '~/stores/notification';
+import { searchStore } from '~/stores/search';
 
 import { NotificationStatusStyled } from './styled';
 
@@ -11,7 +11,7 @@ export interface NotificationStatusProps {
 }
 
 const NotificationStatus = ({ className }: NotificationStatusProps) => {
-  const { status } = useRecoilValue(notificationStore);
+  const { status } = useRecoilValue(searchStore);
 
   const handleRequestNowSearch = () => {
     window.electron.ipcRenderer.send('requestNowSearch');

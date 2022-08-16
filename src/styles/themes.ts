@@ -1,7 +1,7 @@
 export const sizes = {};
 
 export const lightTheme = {
-  primary: '#ffc107',
+  primary: '#1e88e5',
   sidebarBG: '#fafafa',
   contentBG: '#ffffff',
   selectedBG: '#fff8e1',
@@ -15,7 +15,7 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
-  primary: '#ffc107',
+  primary: '#1e88e5',
   sidebarBG: '#2E3136',
   contentBG: '#36393F',
   selectedBG: '#3f3e36',

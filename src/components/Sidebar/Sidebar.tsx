@@ -39,9 +39,9 @@ export const menus = [
         text: '일반 설정',
       },
       {
-        icon: 'bell',
-        link: '/settings/notification',
-        text: '알림 설정',
+        icon: 'search',
+        link: '/settings/search',
+        text: '검색 설정',
       },
     ],
   },

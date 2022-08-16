@@ -1,7 +1,8 @@
+import { motion } from 'framer-motion';
 import { darken } from 'polished';
 import styled from 'styled-components';
 
-export const SaveButtonStyled = styled.div`
+export const SaveButtonStyled = styled(motion.div)`
   position: fixed;
   bottom: 2rem;
   right: 2rem;
@@ -32,7 +33,7 @@ export const SaveButtonStyled = styled.div`
   }
 
   .save {
-    background-color: ${props => props.theme.colors.primary};
+    background-color: ${props => props.theme.colors.success};
 
     &:hover,
     &:focus {

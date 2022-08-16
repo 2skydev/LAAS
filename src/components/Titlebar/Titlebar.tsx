@@ -1,4 +1,8 @@
+import { AppControlAction } from '@app/ipcs/general';
 import clsx from 'clsx';
+import { useRecoilValue } from 'recoil';
+
+import { configStore } from '~/stores/config';
 
 import { TitlebarStyled } from './styled';
 
@@ -7,12 +11,22 @@ export interface TitlebarProps {
 }
 
 const Titlebar = ({ className }: TitlebarProps) => {
-  const appControl = (action: string) => {
-    window.electron.ipcRenderer.send('appControl', action);
+  const {
+    general: { developerMode },
+  } = useRecoilValue(configStore);
+
+  const appControl = (action: AppControlAction) => {
+    window.electron.appControl(action);
   };
 
   return (
     <TitlebarStyled className={clsx('Titlebar', className)}>
+      {developerMode && (
+        <div onClick={() => appControl('devtools')}>
+          <i className="bx bx-code-alt" />
+        </div>
+      )}
+
       <div onClick={() => appControl('minimize')}>
         <i className="bx bx-minus" />
       </div>

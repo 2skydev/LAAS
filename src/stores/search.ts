@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-export interface NotificationStoreValues {
+export interface SearchStoreValues {
   status: {
     id: string;
     status: string;
@@ -8,8 +8,8 @@ export interface NotificationStoreValues {
   };
 }
 
-export const notificationStore = atom<NotificationStoreValues>({
-  key: 'notification',
+export const searchStore = atom<SearchStoreValues>({
+  key: 'search',
   default: {
     status: {
       id: 'loadConfig',

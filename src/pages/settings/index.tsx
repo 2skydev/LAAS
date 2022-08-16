@@ -1,9 +1,27 @@
 import { Switch } from 'antd';
+import { useFormik } from 'formik';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
+import SaveButton from '~/components/SaveButton';
 import Section from '~/components/Section';
+import { configStore } from '~/stores/config';
+import { versionStore } from '~/stores/version';
 import { SettingsPageStyled } from '~/styles/pageStyled/settingsPageStyled';
 
 const Settings = () => {
+  const [config, setConfig] = useRecoilState(configStore);
+  const version = useRecoilValue(versionStore);
+
+  const formik = useFormik({
+    initialValues: config.general,
+    onSubmit: values => {
+      setConfig({
+        ...config,
+        general: values,
+      });
+    },
+  });
+
   return (
     <SettingsPageStyled>
       <Section
@@ -17,10 +35,28 @@ const Settings = () => {
         }
       >
         <Switch
-          checked={true}
-          onChange={value => {}}
+          checked={formik.values.theme === 'dark'}
+          onChange={checked => formik.setFieldValue('theme', checked ? 'dark' : 'light')}
           checkedChildren={<i className="bx bxs-moon" />}
           unCheckedChildren={<i className="bx bxs-sun" />}
+        />
+      </Section>
+
+      <Section
+        title="개발자모드 설정"
+        description={
+          <div>
+            개발자모드를 활성화할지 설정합니다.
+            <br />
+            개발자모드가 활성화되면 개발자 도구가 활성화됩니다.
+          </div>
+        }
+      >
+        <Switch
+          checked={formik.values.developerMode}
+          onChange={checked => formik.setFieldValue('developerMode', checked)}
+          checkedChildren={<i className="bx bx-code-alt" />}
+          unCheckedChildren={<i className="bx bx-x" />}
         />
       </Section>
 
@@ -39,8 +75,10 @@ const Settings = () => {
           </div>
         }
       >
-        앱 버전 정보를 가져오는 중...
+        v{version.version}
       </Section>
+
+      <SaveButton defaultValues={config.general} formik={formik} />
     </SettingsPageStyled>
   );
 };

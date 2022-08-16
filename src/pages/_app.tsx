@@ -21,18 +21,22 @@ declare module 'styled-components' {
 }
 
 const App = ({ children }: { children: ReactNode }) => {
-  const { theme } = useRecoilValue(configStore);
+  const config = useRecoilValue(configStore);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const bootstrap = async () => {
     navigate('/search/items');
+  };
+
+  useEffect(() => {
+    bootstrap();
   }, []);
 
   return (
     <ThemeProvider
       theme={{
         sizes: sizes,
-        colors: theme === 'light' ? lightTheme : darkTheme,
+        colors: config.general.theme === 'light' ? lightTheme : darkTheme,
       }}
     >
       <InitGlobalStyled />

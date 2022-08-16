@@ -8,9 +8,9 @@ import { AnimatePresence } from 'framer-motion';
 import { SaveButtonStyled } from './styled';
 
 export interface SaveButtonProps {
-  className?: string;
-  defaultValues: any;
   formik: any;
+  defaultValues: any;
+  className?: string;
   confirmText?: ReactNode;
   useConfirm?: boolean;
   reset?: boolean;
