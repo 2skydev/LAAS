@@ -1,9 +1,10 @@
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 
 import 'antd/dist/antd.css';
 import { RecoilRoot } from 'recoil';
 
-import Routes from '~/components/Routes';
+import FileSystemRoutes from '~/components/FileSystemRoutes';
 
 import { ElectronRendererContext } from '../app/preload';
 
@@ -14,7 +15,9 @@ declare global {
 }
 
 createRoot(document.getElementById('root') as HTMLElement).render(
-  <RecoilRoot>
-    <Routes />
-  </RecoilRoot>,
+  <BrowserRouter>
+    <RecoilRoot>
+      <FileSystemRoutes />
+    </RecoilRoot>
+  </BrowserRouter>,
 );

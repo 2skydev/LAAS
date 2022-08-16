@@ -1,5 +1,5 @@
-import { useNavigate } from '@tanstack/react-location';
 import { ReactNode, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
@@ -25,7 +25,7 @@ const App = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate({ to: '/search/items' });
+    navigate('/search/items');
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import { Link, useRouter } from '@tanstack/react-location';
+import { Link, useLocation } from 'react-router-dom';
 
 import clsx from 'clsx';
 import { motion, LayoutGroup } from 'framer-motion';
@@ -48,11 +48,7 @@ export const menus = [
 ];
 
 const Sidebar = ({ className }: SidebarProps) => {
-  const {
-    state: {
-      location: { pathname },
-    },
-  } = useRouter();
+  const { pathname } = useLocation();
 
   return (
     <SidebarStyled className={clsx('Sidebar', className)}>

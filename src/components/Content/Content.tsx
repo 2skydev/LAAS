@@ -1,4 +1,4 @@
-import { useRouter } from '@tanstack/react-location';
+import { useLocation } from 'react-router-dom';
 
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -11,11 +11,7 @@ export interface ContentProps {
 }
 
 const Content = ({ className, children }: ContentProps) => {
-  const {
-    state: {
-      location: { pathname },
-    },
-  } = useRouter();
+  const { pathname } = useLocation();
 
   return (
     <ContentStyled className={clsx('Content', className)}>
@@ -25,7 +21,7 @@ const Content = ({ className, children }: ContentProps) => {
         <motion.span
           initial={{ opacity: 0, x: 3 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.3 }}
           key={pathname}
         >
           {'해당 페이지의 이름이 없는거 같네요 :('}
