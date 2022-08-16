@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
 
+import 'antd/dist/antd.css';
 import { RecoilRoot } from 'recoil';
 
 import Routes from '~/components/Routes';

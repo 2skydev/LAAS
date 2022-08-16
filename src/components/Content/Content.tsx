@@ -25,7 +25,7 @@ const Content = ({ className, children }: ContentProps) => {
         <motion.span
           initial={{ opacity: 0, x: 3 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 1 }}
           key={pathname}
         >
           {'해당 페이지의 이름이 없는거 같네요 :('}
@@ -38,6 +38,7 @@ const Content = ({ className, children }: ContentProps) => {
             key={pathname}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 1, y: 0, transition: { duration: 0 } }}
             transition={{ duration: 0.3 }}
           >
             {children}
