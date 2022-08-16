@@ -20,7 +20,7 @@ const Section = ({ className, children, title, description }: SectionProps) => {
         <Col className="section-left" span={10}>
           <h3 className="title">{title}</h3>
 
-          {description && <p>{description}</p>}
+          {description && <div className="description">{description}</div>}
         </Col>
 
         <Col span={14}>{children}</Col>

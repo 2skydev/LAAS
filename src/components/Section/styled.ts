@@ -12,7 +12,7 @@ export const SectionStyled = styled.div`
       font-size: 1.2rem;
     }
 
-    p {
+    > .description {
       color: ${props => props.theme.colors.textColor2};
     }
   }
