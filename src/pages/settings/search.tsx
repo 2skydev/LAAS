@@ -1,4 +1,4 @@
-import { Button, Input, InputNumber, Space, Switch } from 'antd';
+import { Avatar, Button, Input, InputNumber, Space, Switch } from 'antd';
 import { useFormik } from 'formik';
 import { useRecoilState } from 'recoil';
 
@@ -84,7 +84,16 @@ const SettingsNotification = () => {
         }
       >
         <Space className="inputs" size="middle">
-          <Button onClick={handleOAuthDiscord}>연동하기</Button>
+          {formik.values.discordUser ? (
+            <div className="discordUser">
+              <Avatar src={formik.values.discordUser.avatar} />
+              <div className="name">{formik.values.discordUser.username}</div>
+              <div className="id">{formik.values.discordUser.id}</div>
+              <Button onClick={() => formik.setFieldValue('discordUser', null)}>연동해제</Button>
+            </div>
+          ) : (
+            <Button onClick={handleOAuthDiscord}>연동하기</Button>
+          )}
         </Space>
       </Section>
 
