@@ -8,7 +8,7 @@
 - Bundle tool: [`vite`](https://vitejs.dev/)
 - Frontend framework: `react` + `typescript`
 - Code style: `eslint` + `prettier` + [`@trivago/prettier-plugin-sort-imports`](https://github.com/trivago/prettier-plugin-sort-imports)
-- File-system based router: [`generouted`](https://github.com/oedotme/generouted) + [`@tanstack/react-location`](https://react-location.tanstack.com/overview)
+- File-system based router
 - CSS: [`styled-components`](https://styled-components.com/)
 - State management library: [`recoil`](https://hookstate.js.org/)
 - Date: [`dayjs`](https://day.js.org/)
