@@ -1,6 +1,6 @@
 import { app, BrowserWindow, Menu, nativeImage, Tray } from 'electron';
 
-import { join } from 'path';
+import { join, resolve } from 'path';
 
 import './ipcs/general';
 import './ipcs/store';
@@ -31,7 +31,13 @@ if (!gotTheLock) {
   process.exit(0);
 }
 
-app.setAsDefaultProtocolClient('laas');
+if (process.defaultApp) {
+  if (process.argv.length >= 2) {
+    app.setAsDefaultProtocolClient('laas', process.execPath, [resolve(process.argv[1])]);
+  }
+} else {
+  app.setAsDefaultProtocolClient('laas');
+}
 
 const createWindow = () => {
   if (global.win) {
@@ -64,6 +70,38 @@ const createWindow = () => {
     global.win?.webContents.toggleDevTools(); // FIXME: Remove this line
   }
 
+  global.win.on('ready-to-show', () => {
+    global.win?.show();
+  });
+};
+
+app.on('activate', () => {
+  createWindow();
+});
+
+app.on('second-instance', (_, argv) => {
+  if (!IS_MAC) {
+    const url = argv.find(arg => arg.startsWith('laas://'));
+
+    if (url) {
+      deepLinkResolver(url, resolvers);
+    }
+  }
+
+  createWindow();
+});
+
+app.on('window-all-closed', () => {
+  global.win = null;
+});
+
+app.on('open-url', (_, url) => {
+  deepLinkResolver(url, resolvers);
+});
+
+app.whenReady().then(() => {
+  createWindow();
+
   let tray = new Tray(trayIcon);
 
   const contextMenu = Menu.buildFromTemplate([
@@ -79,28 +117,4 @@ const createWindow = () => {
 
   tray.setToolTip('LAAS');
   tray.setContextMenu(contextMenu);
-
-  global.win.on('ready-to-show', () => {
-    global.win?.show();
-  });
-};
-
-app.on('activate', () => {
-  createWindow();
-});
-
-app.on('second-instance', () => {
-  createWindow();
-});
-
-app.on('window-all-closed', () => {
-  global.win = null;
-});
-
-app.on('open-url', (_, url) => {
-  deepLinkResolver(url, resolvers);
-});
-
-app.whenReady().then(() => {
-  createWindow();
 });

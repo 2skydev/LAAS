@@ -22,6 +22,12 @@
     "artifactName": "LAAS-Setup-${version}.${ext}",
     "uninstallDisplayName": "LAAS"
   },
+  "protocols": {
+    "name": "laas",
+    "schemes": [
+      "laas"
+    ]
+  },
   "extraResources": [
     "./resources/**"
   ],
