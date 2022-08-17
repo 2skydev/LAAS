@@ -42,6 +42,12 @@ export const InitGlobalStyled = createGlobalStyle`
     color: inherit;
   }
 
+  em {
+    text-decoration: none;
+    font-style: normal;
+    color: ${props => props.theme.colors.primary};
+  }
+
   #app {
     height: 100vh;
     color: ${props => props.theme.colors.textColor1};
@@ -272,13 +278,13 @@ export const InitGlobalStyled = createGlobalStyle`
     }
 
     .ant-btn {
-      background-color: ${props => props.theme.colors.contentBG};
+      background-color: ${props => lighten(0.06, props.theme.colors.contentBG)};
       border-color: ${props => props.theme.colors.borderColor};
       color: ${props => props.theme.colors.textColor1};
     }
 
     .ant-btn:hover, .ant-btn:focus {
-      background-color: ${props => lighten(0.1, props.theme.colors.contentBG)};
+      background-color: ${props => lighten(0.15, props.theme.colors.contentBG)};
       border-color: ${props => props.theme.colors.primary};
       color: ${props => props.theme.colors.primary};
     }

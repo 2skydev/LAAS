@@ -76,8 +76,7 @@ const Settings = () => {
           </div>
         }
       >
-        <div className="version">v{version}</div>
-        <UpdateStatus status={status} />
+        <UpdateStatus version={version} status={status} />
       </Section>
 
       <SaveButton defaultValues={config.general} formik={formik} />
