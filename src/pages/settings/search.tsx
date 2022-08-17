@@ -1,5 +1,6 @@
 import { Avatar, Button, Input, InputNumber, Space, Switch } from 'antd';
 import { useFormik } from 'formik';
+import { motion } from 'framer-motion';
 import { useRecoilState } from 'recoil';
 
 import DiscordProfile from '~/components/DiscordProfile';
@@ -7,6 +8,11 @@ import SaveButton from '~/components/SaveButton';
 import Section from '~/components/Section';
 import { configStore } from '~/stores/config';
 import { SettingsNotificationPageStyled } from '~/styles/pageStyled/settingsNotificationPageStyled';
+
+const discordProfileChangeAnimateProps = {
+  initial: { opacity: 0, x: -5 },
+  animate: { opacity: 1, x: 0 },
+};
 
 const SettingsNotification = () => {
   const [config, setConfig] = useRecoilState(configStore);
@@ -78,13 +84,18 @@ const SettingsNotification = () => {
       >
         <Space className="inputs" size="middle">
           {formik.values.discordUser ? (
-            <DiscordProfile
-              avatar={formik.values.discordUser.avatar}
-              username={formik.values.discordUser.username}
-              onUnlink={() => formik.setFieldValue('discordUser', null)}
-            />
+            <motion.div key="profile" {...discordProfileChangeAnimateProps}>
+              <DiscordProfile
+                id={formik.values.discordUser.id}
+                avatar={formik.values.discordUser.avatar}
+                username={formik.values.discordUser.username}
+                onUnlink={() => formik.setFieldValue('discordUser', null)}
+              />
+            </motion.div>
           ) : (
-            <Button onClick={handleOAuthDiscord}>연동하기</Button>
+            <motion.div key="link" {...discordProfileChangeAnimateProps}>
+              <Button onClick={handleOAuthDiscord}>연동하기</Button>
+            </motion.div>
           )}
         </Space>
       </Section>
