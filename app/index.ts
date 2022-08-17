@@ -64,10 +64,10 @@ const createWindow = () => {
     global.win.loadFile(PROD_FILE_PATH, {
       hash: '#/search/items',
     });
-    global.win?.webContents.toggleDevTools(); // FIXME: Remove this line
+    // global.win?.webContents.toggleDevTools(); // FIXME: Remove this line
   } else {
     global.win.loadURL(DEV_URL);
-    global.win?.webContents.toggleDevTools(); // FIXME: Remove this line
+    // global.win?.webContents.toggleDevTools(); // FIXME: Remove this line
   }
 
   global.win.on('ready-to-show', () => {

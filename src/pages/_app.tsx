@@ -43,8 +43,6 @@ const App = ({ children }: { children: ReactNode }) => {
     bootstrap();
   }, []);
 
-  console.log(update);
-
   return (
     <ThemeProvider
       theme={useMemo(
