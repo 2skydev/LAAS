@@ -4,13 +4,14 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 
 import SaveButton from '~/components/SaveButton';
 import Section from '~/components/Section';
+import UpdateStatus from '~/components/UpdateStatus';
 import { configStore } from '~/stores/config';
-import { versionStore } from '~/stores/version';
+import { updateStore } from '~/stores/update';
 import { SettingsPageStyled } from '~/styles/pageStyled/settingsPageStyled';
 
 const Settings = () => {
   const [config, setConfig] = useRecoilState(configStore);
-  const version = useRecoilValue(versionStore);
+  const { version, status } = useRecoilValue(updateStore);
 
   const formik = useFormik({
     initialValues: config.general,
@@ -75,7 +76,8 @@ const Settings = () => {
           </div>
         }
       >
-        v{version.version}
+        <div className="version">v{version}</div>
+        <UpdateStatus status={status} />
       </Section>
 
       <SaveButton defaultValues={config.general} formik={formik} />

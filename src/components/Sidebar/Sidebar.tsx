@@ -3,6 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import { motion, LayoutGroup } from 'framer-motion';
 
+import logo from '~/assets/images/logo@256.png';
+
 import { SidebarStyled } from './styled';
 
 export interface SidebarProps {
@@ -52,7 +54,10 @@ const Sidebar = ({ className }: SidebarProps) => {
 
   return (
     <SidebarStyled className={clsx('Sidebar', className)}>
-      <div className="logo">LAAS</div>
+      <div className="logo">
+        <img src={logo} alt="logo" width={40} />
+        LAAS
+      </div>
 
       <LayoutGroup>
         <div className="menus">

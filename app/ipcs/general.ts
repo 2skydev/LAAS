@@ -31,10 +31,6 @@ ipcMain.on('appControl', async (_, action: AppControlAction) => {
   }
 });
 
-ipcMain.handle('getVersion', async () => {
-  return app.getVersion();
-});
-
 ipcMain.on('openExternal', async (_, link) => {
   return shell.openExternal(link);
 });

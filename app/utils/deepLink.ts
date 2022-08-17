@@ -1,11 +1,24 @@
 import { dialog } from 'electron';
 
 import axios from 'axios';
-import { MatchResult } from 'path-to-regexp';
+import { MatchResult, match } from 'path-to-regexp';
 
 export type DeepLinkResolvers = Record<string, (data: MatchResult<any>) => void>;
 
-const deepLinkResolvers: DeepLinkResolvers = {
+export const deepLinkResolver = (url: string, resolvers: DeepLinkResolvers) => {
+  const pathname = url.replace('laas://', '/');
+
+  for (const path in resolvers) {
+    const data = match(path)(pathname);
+
+    if (data) {
+      resolvers[path](data);
+      break;
+    }
+  }
+};
+
+export const resolvers: DeepLinkResolvers = {
   '/oauth/discord/:token': async ({ params }) => {
     const { token } = params;
 
@@ -37,5 +50,3 @@ const deepLinkResolvers: DeepLinkResolvers = {
     }
   },
 };
-
-export default deepLinkResolvers;

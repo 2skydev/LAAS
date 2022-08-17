@@ -13,9 +13,7 @@ export interface NotificationStatusProps {
 const NotificationStatus = ({ className }: NotificationStatusProps) => {
   const { status } = useRecoilValue(searchStore);
 
-  const handleRequestNowSearch = () => {
-    window.electron.ipcRenderer.send('requestNowSearch');
-  };
+  const handleRequestNowSearch = () => {};
 
   return (
     <NotificationStatusStyled className={clsx('NotificationStatus', className)}>

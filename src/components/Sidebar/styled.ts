@@ -11,6 +11,10 @@ export const SidebarStyled = styled.div`
     padding: 2rem 2rem 0 2rem;
     font-family: 'Aquatico';
     font-size: 2rem;
+
+    img {
+      margin-right: 1rem;
+    }
   }
 
   .menus {

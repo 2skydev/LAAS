@@ -1,12 +1,12 @@
 import { ReactNode, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 
 import Layout from '~/components/Layout';
 import Titlebar from '~/components/Titlebar';
 import { configStore } from '~/stores/config';
+import { updateStore } from '~/stores/update';
 import { InitGlobalStyled } from '~/styles/init';
 import { darkTheme, lightTheme, sizes } from '~/styles/themes';
 
@@ -22,15 +22,28 @@ declare module 'styled-components' {
 
 const App = ({ children }: { children: ReactNode }) => {
   const config = useRecoilValue(configStore);
-  const navigate = useNavigate();
+  const [update, setUpdate] = useRecoilState(updateStore);
 
   const bootstrap = async () => {
-    navigate('/search/items');
+    window.electron.onUpdate((event, data) => {
+      setUpdate({
+        ...update,
+        status: {
+          event,
+          data,
+          time: new Date().getTime(),
+        },
+      });
+    });
+
+    window.electron.initlizeUpdater();
   };
 
   useEffect(() => {
     bootstrap();
   }, []);
+
+  console.log(update);
 
   return (
     <ThemeProvider

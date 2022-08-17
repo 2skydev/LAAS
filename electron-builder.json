@@ -5,23 +5,26 @@
     {
       "provider": "github",
       "owner": "2skydev",
-      "repo": "LAAS"
+      "repo": "LAAS-app"
     }
   ],
   "asar": true,
   "win": {
-    "target": "nsis"
+    "target": "nsis",
+    "icon": "resources/icons/logo@256.ico"
+  },
+  "mac": {
+    "icon": "resources/icons/logo@512.png"
   },
   "nsis": {
     "oneClick": true,
     "artifactName": "LAAS-Setup-${version}.${ext}",
-    "uninstallDisplayName": "LAAS",
-    "installerIcon": "resources/windows/logo.ico"
+    "uninstallDisplayName": "LAAS"
   },
-  "files": [
-    "dist/**/*"
-  ],
   "extraResources": [
     "./resources/**"
-  ]
+  ],
+  "directories": {
+    "output": "release/"
+  }
 }

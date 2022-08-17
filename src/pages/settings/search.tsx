@@ -2,6 +2,7 @@ import { Avatar, Button, Input, InputNumber, Space, Switch } from 'antd';
 import { useFormik } from 'formik';
 import { useRecoilState } from 'recoil';
 
+import DiscordProfile from '~/components/DiscordProfile';
 import SaveButton from '~/components/SaveButton';
 import Section from '~/components/Section';
 import { configStore } from '~/stores/config';
@@ -26,8 +27,6 @@ const SettingsNotification = () => {
       formik.setFieldValue('discordUser', user);
     });
   };
-
-  console.log(formik.values);
 
   return (
     <SettingsNotificationPageStyled>
@@ -65,32 +64,25 @@ const SettingsNotification = () => {
       </Section>
 
       <Section
-        title="Discord 사용자 ID *"
+        title="Discord 계정 *"
         description={
           <>
-            알림을 받을 때 멘션을 하기 위해 Discord 사용자 ID를 수집하고 있습니다.
+            알림을 받을 때 멘션을 하기 위해 Discord 계정 정보를 수집하고 있습니다.
             <br />
-            Discord 사용자 ID는 아래 링크를 참고해서 복사하면 됩니다.
+            수집하는 정보는 <mark>ID</mark>, <mark>닉네임</mark>, <mark>프로필 사진</mark> 입니다.
             <br />
             <div className="spacing" />
-            <a
-              href="https://support.discord.com/hc/ko/articles/206346498-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%84%9C%EB%B2%84-%EB%A9%94%EC%8B%9C%EC%A7%80-ID%EB%8A%94-%EC%96%B4%EB%94%94%EC%84%9C-%ED%99%95%EC%9D%B8%ED%95%98%EB%82%98%EC%9A%94-"
-              target="_blank"
-              rel="noreferrer"
-            >
-              사용자/서버/메시지 ID는 어디서 확인하나요?
-            </a>
+            우측 연동하기를 누르면 Discord 계정 엑세스 페이지로 이동합니다.
           </>
         }
       >
         <Space className="inputs" size="middle">
           {formik.values.discordUser ? (
-            <div className="discordUser">
-              <Avatar src={formik.values.discordUser.avatar} />
-              <div className="name">{formik.values.discordUser.username}</div>
-              <div className="id">{formik.values.discordUser.id}</div>
-              <Button onClick={() => formik.setFieldValue('discordUser', null)}>연동해제</Button>
-            </div>
+            <DiscordProfile
+              avatar={formik.values.discordUser.avatar}
+              username={formik.values.discordUser.username}
+              onUnlink={() => formik.setFieldValue('discordUser', null)}
+            />
           ) : (
             <Button onClick={handleOAuthDiscord}>연동하기</Button>
           )}

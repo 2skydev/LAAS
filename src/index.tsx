@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 import { ElectronRendererContext } from '@app/preload';
 import 'antd/dist/antd.css';
@@ -15,11 +15,11 @@ declare global {
 }
 
 createRoot(document.getElementById('root') as HTMLElement).render(
-  <BrowserRouter>
+  <HashRouter>
     <RecoilRoot>
       <Suspense>
         <FileSystemRoutes />
       </Suspense>
     </RecoilRoot>
-  </BrowserRouter>,
+  </HashRouter>,
 );

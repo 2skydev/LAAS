@@ -5,35 +5,35 @@ import { createGlobalStyle } from 'styled-components';
 
 export const InitGlobalStyled = memo(createGlobalStyle`
   @font-face {
-    src: url("/fonts/Aquatico/Aquatico-Regular.woff2");
+    src: url("./fonts/Aquatico/Aquatico-Regular.woff2");
     font-family: "Aquatico";
     font-weight: normal;
     font-display: swap;
   }
 
   @font-face {
-    src: url("/fonts/NanumSquareRound/NanumSquareRoundOTFL.woff2");
+    src: url("./fonts/NanumSquareRound/NanumSquareRoundOTFL.woff2");
     font-family: "NanumSquareRound";
     font-weight: 300;
     font-display: swap;
   }
 
   @font-face {
-    src: url("/fonts/NanumSquareRound/NanumSquareRoundOTFR.woff2");
+    src: url("./fonts/NanumSquareRound/NanumSquareRoundOTFR.woff2");
     font-family: "NanumSquareRound";
     font-weight: 400;
     font-display: swap;
   }
 
   @font-face {
-    src: url("/fonts/NanumSquareRound/NanumSquareRoundOTFB.woff2");
+    src: url("./fonts/NanumSquareRound/NanumSquareRoundOTFB.woff2");
     font-family: "NanumSquareRound";
     font-weight: 700;
     font-display: swap;
   }
 
   @font-face {
-    src: url("/fonts/NanumSquareRound/NanumSquareRoundOTFEB.woff2");
+    src: url("./fonts/NanumSquareRound/NanumSquareRoundOTFEB.woff2");
     font-family: "NanumSquareRound";
     font-weight: 900;
     font-display: swap;
@@ -78,6 +78,14 @@ export const InitGlobalStyled = memo(createGlobalStyle`
     color: ${props => props.theme.colors.textColor1};
   }
 
+  mark {
+    background: ${props => props.theme.colors.sidebarBG};
+    border-radius: 5px;
+    padding: 4px 6px;
+    font-size: inherit;
+    color: inherit;
+  }
+
   #app {
     height: 100vh;
     color: ${props => props.theme.colors.textColor1};
@@ -104,6 +112,10 @@ export const InitGlobalStyled = memo(createGlobalStyle`
         align-items: center;
         justify-content: center;
       }
+    }
+
+    .ant-switch-checked {
+      background-color: ${props => props.theme.colors.primary};
     }
 
     .ant-switch-checked .ant-switch-handle {

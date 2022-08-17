@@ -1,18 +1,28 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu, nativeImage, Tray } from 'electron';
 
 import { join } from 'path';
-import { match } from 'path-to-regexp';
 
-import deepLinkResolvers from './deepLinkResolvers';
 import './ipcs/general';
 import './ipcs/store';
+import './ipcs/updater';
+import { resolvers, deepLinkResolver } from './utils/deepLink';
 
 declare global {
   var win: BrowserWindow | null;
 }
 
-const DEV_URL = `http://localhost:3000`;
+const IS_MAC = process.platform === 'darwin';
+const DEV_URL = `http://localhost:3000/#/search/items`;
 const PROD_FILE_PATH = join(__dirname, '../index.html');
+const RESOURCES_PATH = app.isPackaged
+  ? join(process.resourcesPath, 'resources')
+  : join(app.getAppPath(), 'resources');
+
+const icon = nativeImage.createFromPath(
+  `${RESOURCES_PATH}/icons/${IS_MAC ? 'logo@512.png' : 'logo@256.ico'}`,
+);
+
+const trayIcon = icon.resize({ width: 20, height: 20 });
 
 const gotTheLock = app.requestSingleInstanceLock();
 
@@ -38,17 +48,37 @@ const createWindow = () => {
     show: false,
     autoHideMenuBar: true,
     frame: false,
+    icon,
     webPreferences: {
       preload: join(__dirname, 'preload/index.js'),
     },
   });
 
   if (app.isPackaged) {
-    global.win.loadFile(PROD_FILE_PATH);
+    global.win.loadFile(PROD_FILE_PATH, {
+      hash: '#/search/items',
+    });
+    global.win?.webContents.toggleDevTools(); // FIXME: Remove this line
   } else {
     global.win.loadURL(DEV_URL);
-    global.win?.webContents.toggleDevTools();
+    global.win?.webContents.toggleDevTools(); // FIXME: Remove this line
   }
+
+  let tray = new Tray(trayIcon);
+
+  const contextMenu = Menu.buildFromTemplate([
+    { label: '앱 화면 보기', type: 'normal', click: () => createWindow() },
+    {
+      label: '대기시간 무시하고 바로 검색 시작하기',
+      type: 'normal',
+      click: () => {},
+    },
+    { type: 'separator' },
+    { label: '앱 끄기', role: 'quit', type: 'normal' },
+  ]);
+
+  tray.setToolTip('LAAS');
+  tray.setContextMenu(contextMenu);
 
   global.win.on('ready-to-show', () => {
     global.win?.show();
@@ -68,16 +98,7 @@ app.on('window-all-closed', () => {
 });
 
 app.on('open-url', (_, url) => {
-  const pathname = url.replace('laas://', '/');
-
-  for (const path in deepLinkResolvers) {
-    const data = match(path)(pathname);
-
-    if (data) {
-      deepLinkResolvers[path](data);
-      break;
-    }
-  }
+  deepLinkResolver(url, resolvers);
 });
 
 app.whenReady().then(() => {
