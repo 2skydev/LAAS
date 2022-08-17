@@ -115,6 +115,7 @@ app.whenReady().then(() => {
     { label: '앱 끄기', role: 'quit', type: 'normal' },
   ]);
 
+  tray.on('double-click', () => createWindow());
   tray.setToolTip('LAAS');
   tray.setContextMenu(contextMenu);
 });
