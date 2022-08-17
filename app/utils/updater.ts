@@ -35,6 +35,7 @@ export const initlizeUpdater = () => {
   console.log('> initlizeUpdater');
 
   autoUpdater.logger = log;
+  autoUpdater.autoInstallOnAppQuit = true;
   autoUpdater.fullChangelog = true;
 
   autoUpdater.on('checking-for-update', handleUpdateEvent('checking-for-update'));

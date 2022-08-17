@@ -13,7 +13,7 @@ export const SidebarStyled = styled.div`
     font-size: 2rem;
 
     img {
-      margin-right: 1rem;
+      margin-right: 0.5rem;
     }
   }
 

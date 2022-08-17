@@ -13,6 +13,7 @@ export interface ElectronRendererContext {
   appControl: (action: AppControlAction) => void;
   openExternal: (link: string) => void;
   checkForUpdate: () => void;
+  quitAndInstall: () => void;
 
   getConfig: () => Promise<ConfigStoreValues>;
   setConfig: (config: ConfigStoreValues) => Promise<ConfigStoreValues>;
@@ -29,6 +30,7 @@ const electronContext: ElectronRendererContext = {
   appControl: action => ipcRenderer.send('appControl', action),
   openExternal: link => ipcRenderer.send('openExternal', link),
   checkForUpdate: () => ipcRenderer.send('checkForUpdate'),
+  quitAndInstall: () => ipcRenderer.send('quitAndInstall'),
 
   getConfig: () => ipcRenderer.invoke('getConfig'),
   setConfig: config => ipcRenderer.invoke('setConfig', config),

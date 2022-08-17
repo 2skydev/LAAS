@@ -16,6 +16,10 @@ ipcMain.on('checkForUpdate', async () => {
   autoUpdater.checkForUpdates();
 });
 
+ipcMain.on('quitAndInstall', async () => {
+  autoUpdater.quitAndInstall();
+});
+
 ipcMain.once('initlizeUpdater', async () => {
   initlizeUpdater();
 });
