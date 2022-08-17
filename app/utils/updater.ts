@@ -20,7 +20,7 @@ export type UpdateEvent =
 export const handleUpdateEvent = (event: UpdateEvent) => {
   return (data?: any) => {
     if (event !== 'download-progress') {
-      updateStore.set('update', {
+      updateStore.set('status', {
         event,
         data,
         time: new Date().getTime(),
