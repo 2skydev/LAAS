@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useMemo } from 'react';
 
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
@@ -47,10 +47,13 @@ const App = ({ children }: { children: ReactNode }) => {
 
   return (
     <ThemeProvider
-      theme={{
-        sizes: sizes,
-        colors: config.general.theme === 'light' ? lightTheme : darkTheme,
-      }}
+      theme={useMemo(
+        () => ({
+          sizes: sizes,
+          colors: config.general.theme === 'light' ? lightTheme : darkTheme,
+        }),
+        [config.general.theme],
+      )}
     >
       <InitGlobalStyled />
 

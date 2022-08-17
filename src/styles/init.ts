@@ -3,51 +3,7 @@ import { memo } from 'react';
 import { rgba, lighten, darken } from 'polished';
 import { createGlobalStyle } from 'styled-components';
 
-export const InitGlobalStyled = memo(createGlobalStyle`
-  @font-face {
-    src: url("./fonts/Aquatico/Aquatico-Regular.woff2");
-    font-family: "Aquatico";
-    font-weight: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    src: url("./fonts/NanumSquareRound/NanumSquareRoundOTFL.woff2");
-    font-family: "NanumSquareRound";
-    font-weight: 300;
-    font-display: swap;
-  }
-
-  @font-face {
-    src: url("./fonts/NanumSquareRound/NanumSquareRoundOTFR.woff2");
-    font-family: "NanumSquareRound";
-    font-weight: 400;
-    font-display: swap;
-  }
-
-  @font-face {
-    src: url("./fonts/NanumSquareRound/NanumSquareRoundOTFB.woff2");
-    font-family: "NanumSquareRound";
-    font-weight: 700;
-    font-display: swap;
-  }
-
-  @font-face {
-    src: url("./fonts/NanumSquareRound/NanumSquareRoundOTFEB.woff2");
-    font-family: "NanumSquareRound";
-    font-weight: 900;
-    font-display: swap;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "NanumSquareRound";
-    user-select: none;
-    -webkit-user-drag: none;
-  }
-
+export const InitGlobalStyled = createGlobalStyle`
   *::-webkit-scrollbar {
     width: 8px;
     height: 10px;
@@ -456,4 +412,4 @@ export const InitGlobalStyled = memo(createGlobalStyle`
       border-color: ${props => props.theme.colors.borderColor};
     }
   }
-`);
+`;
