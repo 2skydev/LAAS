@@ -55,7 +55,7 @@ const Sidebar = ({ className }: SidebarProps) => {
   return (
     <SidebarStyled className={clsx('Sidebar', className)}>
       <div className="logo">
-        <img src={logo} alt="logo" width={40} />
+        <img src={logo} alt="logo" width={35} />
         LAAS
       </div>
 

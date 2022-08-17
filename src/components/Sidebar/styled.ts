@@ -10,7 +10,9 @@ export const SidebarStyled = styled.div`
     margin-bottom: 2rem;
     padding: 2rem 2rem 0 2rem;
     font-family: 'Aquatico';
-    font-size: 2rem;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
 
     img {
       margin-right: 0.5rem;
