@@ -277,23 +277,44 @@ export const InitGlobalStyled = createGlobalStyle`
       box-shadow: 0 0 0 2px ${props => rgba(props.theme.colors.primary, 0.2)} !important;
     }
 
+    // 버튼
     .ant-btn {
       background-color: ${props => lighten(0.06, props.theme.colors.contentBG)};
       border-color: ${props => props.theme.colors.borderColor};
       color: ${props => props.theme.colors.textColor1};
     }
 
+    // 버튼 상호작용 상태
     .ant-btn:hover, .ant-btn:focus {
       background-color: ${props => lighten(0.15, props.theme.colors.contentBG)};
       border-color: ${props => props.theme.colors.primary};
       color: ${props => props.theme.colors.primary};
     }
 
+    // 버튼 로딩 상태
+    .ant-btn.ant-btn-loading {
+      opacity: 0.6;
+      border-color: transparent;
+      color: ${props => props.theme.colors.textColor1};
+      background-color: ${props => lighten(0.06, props.theme.colors.contentBG)};
+    }
+
+    .ant-btn.ant-btn-dangerous {
+      border-color: ${props => props.theme.colors.error};
+      background-color: transparent;
+      color: ${props => props.theme.colors.error};
+
+      &:hover, &:focus {
+        background-color: ${props => lighten(0.06, props.theme.colors.contentBG)};
+      }
+    }
+
+    // 버튼 비활성 상태
     .ant-btn-dangerous.ant-btn-primary[disabled], .ant-btn-dangerous.ant-btn-primary[disabled]:hover, .ant-btn-dangerous.ant-btn-primary[disabled]:focus, .ant-btn-dangerous.ant-btn-primary[disabled]:active {
       border-color: ${props => props.theme.colors.borderColor};
       background-color: ${props => props.theme.colors.contentBG};
       color: ${props => props.theme.colors.textColor2};
-      opacity: .4;
+      opacity: 0.4;
     }
 
     .ant-input.noBorder, .ant-select.noBorder .ant-select-selector, .ant-input-number.noBorder {

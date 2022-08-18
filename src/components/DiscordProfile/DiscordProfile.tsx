@@ -23,7 +23,9 @@ const DiscordProfile = ({ className, avatar, username, id, onUnlink }: DiscordPr
         </div>
       </div>
 
-      <Button onClick={() => onUnlink?.()}>연동해제</Button>
+      <Button danger onClick={() => onUnlink?.()}>
+        연동해제
+      </Button>
     </DiscordProfileStyled>
   );
 };
