@@ -20,8 +20,18 @@ export const ContentStyled = styled.div`
       color: ${props => props.theme.colors.textColor2};
     }
 
-    span {
+    > span {
       margin-bottom: -1px;
+
+      > span {
+        & + span::before {
+          content: '/';
+          display: inline-block;
+          margin: 0 0.3rem;
+          font-weight: bold;
+          color: ${props => props.theme.colors.textColor2};
+        }
+      }
     }
   }
 

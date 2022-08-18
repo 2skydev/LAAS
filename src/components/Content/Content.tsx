@@ -2,6 +2,9 @@ import { useLocation } from 'react-router-dom';
 
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useRecoilValue } from 'recoil';
+
+import { layoutStore } from '~/stores/layout';
 
 import { ContentStyled } from './styled';
 
@@ -11,6 +14,7 @@ export interface ContentProps {
 }
 
 const Content = ({ className, children }: ContentProps) => {
+  const { breadcrumbs } = useRecoilValue(layoutStore);
   const { pathname } = useLocation();
 
   return (
@@ -24,7 +28,9 @@ const Content = ({ className, children }: ContentProps) => {
           transition={{ duration: 0.3 }}
           key={pathname}
         >
-          {'해당 페이지의 이름이 없는거 같네요 :('}
+          {breadcrumbs.map((text, i) => (
+            <span key={text + i}>{text}</span>
+          ))}
         </motion.span>
       </div>
 

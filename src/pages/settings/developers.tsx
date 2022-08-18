@@ -5,6 +5,7 @@ import { Button, Divider } from 'antd';
 import dayjs from 'dayjs';
 import useSWR from 'swr';
 
+import LayoutConfig from '~/components/LayoutConfig';
 import Section from '~/components/Section';
 import { SettingsDevelopersPageStyled } from '~/styles/pageStyled/settingsDevelopersPageStyled';
 
@@ -43,6 +44,8 @@ const SettingsDevelopers = () => {
 
   return (
     <SettingsDevelopersPageStyled>
+      <LayoutConfig breadcrumbs={['설정', '개발자 옵션']} />
+
       <Section
         title="데이터 조회일"
         description={

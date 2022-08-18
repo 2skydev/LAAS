@@ -2,6 +2,7 @@ import { Switch } from 'antd';
 import { useFormik } from 'formik';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
+import LayoutConfig from '~/components/LayoutConfig';
 import SaveButton from '~/components/SaveButton';
 import Section from '~/components/Section';
 import UpdateStatus from '~/components/UpdateStatus';
@@ -25,6 +26,8 @@ const Settings = () => {
 
   return (
     <SettingsPageStyled>
+      <LayoutConfig breadcrumbs={['설정', '일반 설정']} />
+
       <Section
         title="다크모드 설정"
         description={

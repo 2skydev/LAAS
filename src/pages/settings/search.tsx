@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useRecoilState } from 'recoil';
 
 import DiscordProfile from '~/components/DiscordProfile';
+import LayoutConfig from '~/components/LayoutConfig';
 import SaveButton from '~/components/SaveButton';
 import Section from '~/components/Section';
 import { configStore } from '~/stores/config';
@@ -36,6 +37,8 @@ const SettingsNotification = () => {
 
   return (
     <SettingsNotificationPageStyled>
+      <LayoutConfig breadcrumbs={['설정', '검색 설정']} />
+
       <Section
         title="로스트아크 계정 *"
         description={
