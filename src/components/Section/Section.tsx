@@ -16,15 +16,13 @@ export interface SectionProps {
 const Section = ({ className, children, title, description }: SectionProps) => {
   return (
     <SectionStyled className={clsx('Section', className)}>
-      <Row gutter={16}>
-        <Col className="section-left" span={10}>
-          <h3 className="title">{title}</h3>
+      <div className="left">
+        <h3 className="title">{title}</h3>
 
-          {description && <div className="description">{description}</div>}
-        </Col>
+        {description && <div className="description">{description}</div>}
+      </div>
 
-        <Col span={14}>{children}</Col>
-      </Row>
+      <div className="content">{children}</div>
     </SectionStyled>
   );
 };

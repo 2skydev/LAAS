@@ -6,7 +6,7 @@ export const ContentStyled = styled.div`
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
 
-  .header {
+  > .header {
     padding: 1.5rem 2rem;
     border-bottom: 1px solid ${props => props.theme.colors.borderColor};
     font-weight: bold;
@@ -25,7 +25,7 @@ export const ContentStyled = styled.div`
     }
   }
 
-  .content {
+  > .content {
     padding: 3rem 2rem;
     overflow-y: auto;
     max-height: calc(100% - 73px - 10px);
