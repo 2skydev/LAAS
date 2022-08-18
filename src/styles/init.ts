@@ -57,6 +57,14 @@ export const InitGlobalStyled = createGlobalStyle`
     color: ${props => props.theme.colors.primary};
   }
 
+  .successColor {
+    color: ${props => props.theme.colors.success};
+  }
+
+  .errorColor {
+    color: ${props => props.theme.colors.error};
+  }
+
   #app {
     height: 100vh;
     color: ${props => props.theme.colors.textColor1};

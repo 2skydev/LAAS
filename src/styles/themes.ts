@@ -11,7 +11,9 @@ export const lightTheme = {
   textColor1: '#222222',
   textColor2: '#777A88',
   success: '#4caf50',
-  error: '#ff4d4f',
+  error: '#FE6968',
+  relic: '#ff6000',
+  ancient: '#c9a472',
 };
 
 export const darkTheme = {
@@ -25,5 +27,7 @@ export const darkTheme = {
   textColor1: '#ffffff',
   textColor2: '#8E9297',
   success: '#4caf50',
-  error: '#ff4d4f',
+  error: '#FE6968',
+  relic: '#ff6000',
+  ancient: '#c9a472',
 };

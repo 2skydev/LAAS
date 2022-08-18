@@ -154,9 +154,7 @@ const SettingsNotification = () => {
             해당 옵션이 꺼져있다면 로그를 저장하지 않습니다.
             <br />
             <div className="spacing" />
-            <span style={{ color: '#f44336' }}>
-              해당 옵션은 되도록 사용하지 않는 것을 권장합니다.
-            </span>
+            <span className="errorColor">해당 옵션은 되도록 사용하지 않는 것을 권장합니다.</span>
           </>
         }
       >
