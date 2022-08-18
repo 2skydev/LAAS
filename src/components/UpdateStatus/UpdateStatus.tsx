@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import { UpdateStatus as UpdateStatusType } from '@app/utils/updater';
 import { Button } from 'antd';
 import clsx from 'clsx';
@@ -12,13 +14,23 @@ export interface UpdateStatusProps {
 }
 
 const UpdateStatus = ({ className, version, status }: UpdateStatusProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleCheckForUpdate = () => {
+    setIsLoading(true);
     window.electron.checkForUpdate();
   };
 
   const handleUpdateNow = () => {
+    setIsLoading(true);
     window.electron.quitAndInstall();
   };
+
+  useEffect(() => {
+    if (status.event === 'checking-for-update') {
+      setIsLoading(false);
+    }
+  }, [status]);
 
   return (
     <UpdateStatusStyled className={clsx('UpdateStatus', className)}>
@@ -33,8 +45,10 @@ const UpdateStatus = ({ className, version, status }: UpdateStatusProps) => {
 
         {status.event === 'update-not-available' && (
           <>
-            최신 버전입니다. ({dayjs(status.time).format('YYYY-MM-DD HH:mm:ss')})
-            <Button onClick={handleCheckForUpdate}>업데이트 확인</Button>
+            최신 버전입니다. ({dayjs(status.time).fromNow()})
+            <Button loading={isLoading} onClick={handleCheckForUpdate}>
+              업데이트 확인
+            </Button>
           </>
         )}
 
