@@ -122,6 +122,7 @@ const SettingsDevelopers = () => {
                   axis="y"
                   type="uniform"
                   length={log.lines.length}
+                  initialIndex={log.lines.length - 1}
                   itemRenderer={(index, key) => (
                     <pre className="item selectable" key={key}>
                       {log.lines[index]}
