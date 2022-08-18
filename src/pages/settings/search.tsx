@@ -1,6 +1,6 @@
 import { Avatar, Button, Input, InputNumber, Space, Switch } from 'antd';
 import { useFormik } from 'formik';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useRecoilState } from 'recoil';
 
 import DiscordProfile from '~/components/DiscordProfile';
@@ -83,20 +83,22 @@ const SettingsNotification = () => {
         }
       >
         <Space className="inputs" size="middle">
-          {formik.values.discordUser ? (
-            <motion.div key="profile" {...discordProfileChangeAnimateProps}>
-              <DiscordProfile
-                id={formik.values.discordUser.id}
-                avatar={formik.values.discordUser.avatar}
-                username={formik.values.discordUser.username}
-                onUnlink={() => formik.setFieldValue('discordUser', null)}
-              />
-            </motion.div>
-          ) : (
-            <motion.div key="link" {...discordProfileChangeAnimateProps}>
-              <Button onClick={handleOAuthDiscord}>연동하기</Button>
-            </motion.div>
-          )}
+          <AnimatePresence initial={false}>
+            {formik.values.discordUser ? (
+              <motion.div key="profile" {...discordProfileChangeAnimateProps}>
+                <DiscordProfile
+                  id={formik.values.discordUser.id}
+                  avatar={formik.values.discordUser.avatar}
+                  username={formik.values.discordUser.username}
+                  onUnlink={() => formik.setFieldValue('discordUser', null)}
+                />
+              </motion.div>
+            ) : (
+              <motion.div key="link" {...discordProfileChangeAnimateProps}>
+                <Button onClick={handleOAuthDiscord}>연동하기</Button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </Space>
       </Section>
 
