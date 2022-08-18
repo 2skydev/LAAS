@@ -38,4 +38,10 @@ export const SectionStyled = styled.div`
   .spacing {
     height: 0.6rem;
   }
+
+  .sectionButton {
+    display: block;
+    margin-top: 1rem;
+    width: 20rem;
+  }
 `;

@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { RecoilRoot } from 'recoil';
+import { SWRConfig, SWRConfiguration } from 'swr';
 
 import FileSystemRoutes from '~/components/FileSystemRoutes';
 
@@ -20,12 +21,21 @@ declare global {
   }
 }
 
+const swrConfig: SWRConfiguration = {
+  errorRetryCount: 3,
+  errorRetryInterval: 500,
+  revalidateOnFocus: false,
+  revalidateIfStale: false,
+};
+
 createRoot(document.getElementById('root') as HTMLElement).render(
   <HashRouter>
     <RecoilRoot>
-      <Suspense>
-        <FileSystemRoutes />
-      </Suspense>
+      <SWRConfig value={swrConfig}>
+        <Suspense>
+          <FileSystemRoutes />
+        </Suspense>
+      </SWRConfig>
     </RecoilRoot>
   </HashRouter>,
 );

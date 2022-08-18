@@ -21,8 +21,17 @@ export const InitGlobalStyled = createGlobalStyle`
     border: 1px solid transparent;
   }
 
+  *::selection {
+    background: ${props => props.theme.colors.primary};
+  }
+
   a {
     text-decoration: none;
+  }
+
+  .selectable {
+    user-select: text;
+    -webkit-user-drag: auto;
   }
 
   h1,
@@ -39,7 +48,7 @@ export const InitGlobalStyled = createGlobalStyle`
     border-radius: 5px;
     padding: 4px 6px;
     font-size: inherit;
-    color: inherit;
+    color: ${props => props.theme.colors.textColor2};
   }
 
   em {

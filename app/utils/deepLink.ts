@@ -1,4 +1,5 @@
 import { dialog } from 'electron';
+import log from 'electron-log';
 
 import axios from 'axios';
 import { MatchResult, match } from 'path-to-regexp';
@@ -29,12 +30,16 @@ export const resolvers: DeepLinkResolvers = {
         },
       });
 
-      const { id, username, avatar } = res.data;
+      let { id, username, avatar } = res.data;
+
+      avatar = `https://cdn.discordapp.com/avatars/${id}/${avatar}.webp`;
+
+      log.info('Discord OAuth success', { id, username, avatar });
 
       global.win?.webContents.send('oauth/discord', {
         id,
         username,
-        avatar: `https://cdn.discordapp.com/avatars/${id}/${avatar}.webp`,
+        avatar,
       });
     } catch (error: any) {
       let message = error?.response?.data || error?.message;
@@ -42,6 +47,8 @@ export const resolvers: DeepLinkResolvers = {
       if (typeof message === 'object') {
         message = JSON.stringify(message);
       }
+
+      log.error('Discord OAuth faild', message);
 
       dialog.showErrorBox(
         '디스코드 연동 오류',

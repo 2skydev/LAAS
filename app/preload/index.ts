@@ -1,5 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron';
 
+import { Log } from '../ipcs/developers';
 import { AppControlAction } from '../ipcs/general';
 import { DiscordUser } from '../stores/config';
 import { ConfigStoreValues } from '../stores/config';
@@ -20,6 +21,10 @@ export interface ElectronRendererContext {
 
   getVersion: () => Promise<string>;
   getUpdaterStatus: () => Promise<UpdateStatus>;
+
+  getStorePath: () => Promise<string>;
+  getLogs: () => Promise<Log[]>;
+  clearLogs: () => Promise<boolean>;
 }
 
 const electronContext: ElectronRendererContext = {
@@ -37,6 +42,10 @@ const electronContext: ElectronRendererContext = {
 
   getVersion: () => ipcRenderer.invoke('getVersion'),
   getUpdaterStatus: () => ipcRenderer.invoke('getUpdaterStatus'),
+
+  getStorePath: () => ipcRenderer.invoke('getStorePath'),
+  getLogs: () => ipcRenderer.invoke('getLogs'),
+  clearLogs: () => ipcRenderer.invoke('clearLogs'),
 };
 
 contextBridge.exposeInMainWorld('electron', electronContext);

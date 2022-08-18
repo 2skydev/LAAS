@@ -41,3 +41,9 @@
   user-select: none;
   -webkit-user-drag: none;
 }
+
+pre {
+  font-family: 'NanumSquareRound' !important;
+  margin-bottom: 0 !important;
+  overflow: visible !important;
+}

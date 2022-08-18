@@ -2,6 +2,7 @@ import { app, BrowserWindow, Menu, nativeImage, Tray } from 'electron';
 
 import { join, resolve } from 'path';
 
+import './ipcs/developers';
 import './ipcs/general';
 import './ipcs/store';
 import './ipcs/updater';
