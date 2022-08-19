@@ -28,6 +28,11 @@ const Sidebar = ({ className }: SidebarProps) => {
             link: '/search/items',
             text: '매물 검색 목록',
           },
+          {
+            icon: 'list-plus',
+            link: '/search/items/add',
+            text: '매물 검색 추가',
+          },
         ],
       },
       {
