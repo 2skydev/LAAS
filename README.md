@@ -1,5 +1,13 @@
 # LAAS - LOST ARK Accessory Search
 
+로스트아크 장신구 매물 검색기 데스크탑 앱
+
+필요한 장신구들을 등록해두면 자동으로 경매장에서 검색 후 조건값이 만족한다면 디스코드로 알림을 전송합니다.
+
+> 이전에 만들어둔 코드를 리팩토링한 버전입니다.
+> - 이전버전 React Github: [`LAAS-frontend-deprecated`](https://github.com/2skydev/LAAS-frontend-deprecated)
+> - 이전버전 Electron Github: [`LAAS-app-deprecated`](https://github.com/2skydev/LAAS-app-deprecated)
+
 ## Overview
 
 - App framework: [`electron`](https://www.electronjs.org/)
