@@ -1,4 +1,5 @@
-import { UpdateStoreValues } from '@app/stores/update';
+import { UpdateStoreValues } from '@app/electron/stores/update';
+
 import { atom } from 'recoil';
 
 export const updateStore = atom<UpdateStoreValues & { version: string }>({

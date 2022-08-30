@@ -6,7 +6,7 @@ import { MatchResult, match } from 'path-to-regexp';
 
 export type DeepLinkResolvers = Record<string, (data: MatchResult<any>) => void>;
 
-export const deepLinkResolver = (url: string, resolvers: DeepLinkResolvers) => {
+export const runDeepLinkResolver = (url: string) => {
   const pathname = url.replace('laas://', '/');
 
   for (const path in resolvers) {

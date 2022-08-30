@@ -1,4 +1,5 @@
-import { AppControlAction } from '@app/ipcs/general';
+import { AppControlAction } from '@app/electron/ipcs/general';
+
 import clsx from 'clsx';
 import { useRecoilValue } from 'recoil';
 

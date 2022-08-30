@@ -25,11 +25,11 @@ export default defineConfig({
       },
       preload: {
         input: {
-          index: join(__dirname, 'app/preload/index.ts'),
+          index: join(__dirname, 'app/electron/preload/index.ts'),
         },
         vite: {
           build: {
-            outDir: 'dist/app/preload',
+            outDir: 'dist/app/electron/preload',
           },
         },
       },

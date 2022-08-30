@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, shell } from 'electron';
+import { BrowserWindow, ipcMain, shell } from 'electron';
 
 declare global {
   var win: BrowserWindow | null;

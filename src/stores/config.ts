@@ -1,4 +1,5 @@
-import { ConfigStoreValues } from '@app/stores/config';
+import { ConfigStoreValues } from '@app/electron/stores/config';
+
 import { atom, AtomEffect } from 'recoil';
 
 const appStoreSyncEffect: AtomEffect<ConfigStoreValues> = ({ onSet }) => {

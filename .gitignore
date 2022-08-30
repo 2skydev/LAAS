@@ -5,6 +5,6 @@ index.node
 yarn-debug.log*
 yarn-error.log*
 dist
-/resources/windows/chrome
+/resources/windows/chromium
 chrome_data
 release
