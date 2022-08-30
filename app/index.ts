@@ -7,6 +7,7 @@ import './ipcs/general';
 import './ipcs/store';
 import './ipcs/updater';
 import { resolvers, deepLinkResolver } from './utils/deepLink';
+import { LAAS } from './utils/laas';
 
 declare global {
   var win: BrowserWindow | null;
@@ -100,7 +101,7 @@ app.on('open-url', (_, url) => {
   deepLinkResolver(url, resolvers);
 });
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
   createWindow();
 
   let tray = new Tray(trayIcon);
@@ -119,4 +120,10 @@ app.whenReady().then(() => {
   tray.on('double-click', () => createWindow());
   tray.setToolTip('LAAS');
   tray.setContextMenu(contextMenu);
+
+  const laas = new LAAS();
+
+  await laas.launch();
+
+  laas.test();
 });
