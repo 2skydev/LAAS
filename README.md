@@ -8,6 +8,8 @@
 > - 이전버전 React Github: [`LAAS-frontend-deprecated`](https://github.com/2skydev/LAAS-frontend-deprecated)
 > - 이전버전 Electron Github: [`LAAS-app-deprecated`](https://github.com/2skydev/LAAS-app-deprecated)
 
+🚧 아직 작업중인 레포입니다!!!
+
 ## Overview
 
 - App framework: [`electron`](https://www.electronjs.org/)
