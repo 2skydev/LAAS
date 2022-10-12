@@ -1,9 +1,8 @@
-import { ElectronRendererContext } from '@app/electron/preload';
-
 import { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
 
+import { ElectronRendererContext } from '@app/electron/preload';
 import 'antd/dist/antd.css';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
@@ -23,7 +22,7 @@ declare global {
 }
 
 const swrConfig: SWRConfiguration = {
-  errorRetryCount: 3,
+  errorRetryCount: 2,
   errorRetryInterval: 500,
   revalidateOnFocus: false,
   revalidateIfStale: false,

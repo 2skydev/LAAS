@@ -1,22 +1,41 @@
+import { app, BrowserWindow, Menu, nativeImage, Tray } from 'electron';
+
+import { join, resolve } from 'path';
+import { BrowserContext } from 'playwright';
+import { chromium } from 'playwright-extra';
+import PortalPlugin from 'puppeteer-extra-plugin-portal';
+import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+
+import { protocols } from '../electron-builder.json';
 import './electron/ipcs/developers';
 import './electron/ipcs/general';
 import './electron/ipcs/store';
 import './electron/ipcs/updater';
 import { runDeepLinkResolver } from './electron/utils/deepLink';
-import { app, BrowserWindow, Menu, nativeImage, Tray } from 'electron';
-
-import { join, resolve } from 'path';
-import { BrowserContext, chromium } from 'playwright';
 
 class LAAS {
+  // deep link protocol
+  PROTOCOL = protocols.name;
+
+  // is mac os
   IS_MAC = process.platform === 'darwin';
+
+  // dev mode - url
   DEV_URL = `http://localhost:3000/#/search/items`;
-  PROD_FILE_PATH = join(__dirname, '../index.html');
+
+  // production mode - load file
+  PROD_LOAD_FILE_PATH = join(__dirname, '../index.html');
+  PROD_LOAD_FILE_HASH = '#/search/items';
+
+  // resources directory
   RESOURCES_PATH = app.isPackaged
     ? join(process.resourcesPath, 'resources')
     : join(app.getAppPath(), 'resources');
 
+  // electron window
   window: BrowserWindow;
+
+  // playwright browser context
   browserContext: BrowserContext;
 
   async bootstrap() {
@@ -39,13 +58,7 @@ class LAAS {
       process.exit(0);
     }
 
-    if (process.defaultApp) {
-      if (process.argv.length >= 2) {
-        app.setAsDefaultProtocolClient('laas', process.execPath, [resolve(process.argv[1])]);
-      }
-    } else {
-      app.setAsDefaultProtocolClient('laas');
-    }
+    app.setAsDefaultProtocolClient(this.PROTOCOL);
 
     const createWindow = () => {
       if (this.window) {
@@ -69,8 +82,8 @@ class LAAS {
       });
 
       if (app.isPackaged) {
-        this.window.loadFile(this.PROD_FILE_PATH, {
-          hash: '#/search/items',
+        this.window.loadFile(this.PROD_LOAD_FILE_PATH, {
+          hash: this.PROD_LOAD_FILE_HASH,
         });
 
         this.window.webContents.openDevTools(); // FIXME: Remove this line
@@ -90,7 +103,7 @@ class LAAS {
 
     app.on('second-instance', (_, argv) => {
       if (!this.IS_MAC) {
-        const url = argv.find(arg => arg.startsWith('laas://'));
+        const url = argv.find(arg => arg.startsWith(`${this.PROTOCOL}://`));
 
         if (url) {
           runDeepLinkResolver(url);
@@ -131,9 +144,14 @@ class LAAS {
   }
 
   async launchBrowser() {
-    this.browserContext = await chromium.launchPersistentContext('./chrome_user_data', {
+    chromium.use(StealthPlugin());
+
+    this.browserContext = await chromium.launchPersistentContext('./chrome_data', {
       headless: false,
-      executablePath: resolve(this.RESOURCES_PATH, 'windows/chromium/chrome.exe'),
+      args: ['--no-sandbox'],
+      ...(!this.IS_MAC
+        ? { executablePath: resolve(this.RESOURCES_PATH, 'windows/chromium/chrome.exe') }
+        : {}),
     });
   }
 
